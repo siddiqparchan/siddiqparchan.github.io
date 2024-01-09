@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <title>Cara Ngeskip Grub Menu</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+    <!--
+            &nbsp; = spasi
+            <hr> = garis lurus
+    -->
+    <nav>
+        <a href="../index.html">Home</a>&nbsp;
+        <a href="../about.html">About</a>
+        <hr>
+    </nav>
+
+    <article>
+        <h2>Cara Ngeskip Grub Menu</h2>
+        <section>
+            <p>
+                Grub menu adalah menu yang muncul saat kita hendak
+                boot ke OS kita. Bootmenu akan berguna jika kita dualboot
+                dengan OS lain atau ingin menambahkan menu-menu lainnya,
+                seperti jika kita ingin masuk ke EUFI setting lewat grub.
+                Tapi, jika kita hanya ingin boot dengan cepat,
+                grub menu adalah suatu hal yang mengganggu. Seperti saya,
+                saya hanya menginstall debian (single boot) di computer saya, tetapi
+                setiap boot, muncul grub menu yang mengganggu. Saya sudah bisa
+                ngeskipnya, jadi saya gabut pengen bikin artikel
+                tentang cara ngeskip grub menu.
+            </p>
+            <p>
+                Untuk ngeskip, kita perlu mengedit config file dari grub,
+                letaknya di "/etc/default/grub" kalau pakai debian, tapi kalau
+                pakai distro lain, bisa aja beda. Kalau bingung, pakai aja command ini:
+            <div>$ sudo nano /etc/default/grub</div>
+            </p>
+            <p>
+                Kita perlu merubah beberapa baris, pertama adalah:
+            <div>GRUB_TIMEOUT=5</div>
+            ke:
+            <div>GRUB_TIMEOUT=0</div>
+            Gunanya untuk ngemastiin loading default grub
+            menjadi 0 second.
+            Kedua, tambahin:
+            <div>GRUB_DISABLE_OS_PROBER=true</div>
+            OS Prober itu, kaya sebuah tool untuk ngedetect OS lain
+            di perangkat kita, lebih jelas cari sendiri, soalnya saya
+            ga pasti.
+            Ketiga:
+            <div>GRUB_CMDLINE_LINUX_DEFAULT="quiet splash resume=UUID=6173f3b9-38e5-4cd4-9480-29b0feefdbc3"</div>
+            ke:
+            <div>GRUB_CMDLINE_LINUX_DEFAULT=""</div>
+            Ini untuk ngeskip tulisan-tulisan kaya kernel apa yang
+            di boot.
+            </p>
+            <p>
+                Langkah terakhir adalah:
+            <div>$ sudo update-grub</div>
+            </p>
+            <p>
+                Ok, sekarang kalian bisa boot dengan lebih cepat.
+            </p>
+        </section>
+    </article>
+</body>
+
+</html>

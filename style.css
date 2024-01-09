@@ -1,0 +1,19 @@
+* {
+    color: white;
+    background: black;
+    max-width: 800px;
+    /*supaya text ke tengah*/
+    margin: auto;
+}
+
+a {
+    color: aqua;
+}
+
+body {
+    text-align: justify;
+}
+
+div {
+    color: greenyellow;
+}
